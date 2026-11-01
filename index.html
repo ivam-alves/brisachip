@@ -1,0 +1,832 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Brisanet com Ivam</title><meta property="og:title" content="Brisanet com Ivam"><meta property="og:description" content="Faça seu pré-cadastro Brisanet e fale direto com Ivam no WhatsApp."><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap">
+<style>
+/* Layout: página de atendimento de uma coluna, pensada para o celular do cliente.
+   Topo com o vendedor, planos em grade, escolha do chip, portabilidade com SMS de exemplo, formulário que abre o WhatsApp. */
+:root {
+  --bg: #fff8f1;
+  --surface: #ffffff;
+  --fg: #2b1a10;
+  --muted: #7a5c4b;
+  --line: #f0dccb;
+  --accent: #ff5a14;
+  --accent-ink: #ffffff;
+  --accent-soft: #ffe9dc;
+  --gold: #ffc800;
+  --gold-ink: #5a2600;
+  --ok: #1d7f49;
+  --warn-bg: #fff2c9;
+  --warn-ink: #5c4300;
+  --sms-in: #ece6e1;
+  --sms-out: #cfe0ff;
+  --sms-ink: #1d1a18;
+  --font-display: "Outfit", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1a110b; --surface: #26180f; --fg: #fbeee3; --muted: #cbae9c; --line: #3d2a1d;
+    --accent: #ff6d2e; --accent-soft: #3b2214; --warn-bg: #3d3010; --warn-ink: #ffe8a3;
+    --ok: #55c88a; --sms-in: #34261c; --sms-out: #28406e; --sms-ink: #f4ece6; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1a110b; --surface: #26180f; --fg: #fbeee3; --muted: #cbae9c; --line: #3d2a1d;
+  --accent: #ff6d2e; --accent-soft: #3b2214; --warn-bg: #3d3010; --warn-ink: #ffe8a3;
+  --ok: #55c88a; --sms-in: #34261c; --sms-out: #28406e; --sms-ink: #f4ece6; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.5; padding-inline: 16px; padding-block: 0 48px; }
+.wrap { max-width: 760px; margin-inline: auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; margin: 0; text-wrap: balance; }
+h2 { font-size: 1.6rem; margin-bottom: 6px; }
+h3 { font-size: 1.1rem; }
+p { margin: 0; }
+section { padding-block: 34px 0; }
+.lead { color: var(--muted); max-width: 60ch; margin-bottom: 18px; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-block: 16px; }
+.who { display: flex; flex-direction: column; min-width: 0; }
+.logo-svg { height: 44px; width: auto; max-width: 100%; display: block; }
+.who span { color: var(--muted); font-size: .85rem; margin-top: 4px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 999px; border: 0; background: var(--accent); color: var(--accent-ink); font: 700 1rem var(--font-body); text-decoration: none; cursor: pointer; text-align: center; }
+.btn.ghost { background: transparent; color: var(--fg); border: 2px solid var(--line); }
+.btn.small { min-height: 40px; padding: 0 16px; font-size: .95rem; }
+.btn:active { transform: translateY(1px); }
+
+.hero { background: var(--accent); color: var(--accent-ink); border-radius: 28px; padding: 28px 22px 26px; margin-top: 4px; }
+.hero h1 { font-size: clamp(2rem, 8vw, 3rem); font-weight: 800; letter-spacing: -.01em; }
+.hero p { margin-top: 12px; max-width: 46ch; font-size: 1.05rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.tag { background: var(--gold); color: var(--gold-ink); font-weight: 700; font-size: .9rem; padding: 6px 14px; border-radius: 999px; }
+.tag.line { background: transparent; color: var(--accent-ink); border: 2px solid rgba(255,255,255,.7); }
+.bf { margin-top: 16px; background: #141414; color: #fff; border-radius: 18px; padding: 14px 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 14px; }
+.bf strong { color: var(--gold); font-family: var(--font-display); font-size: 1.1rem; display: block; }
+.bf span { font-size: .92rem; }
+.notice { margin-top: 14px; font-size: .85rem; color: var(--muted); }
+
+.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.plan { background: var(--surface); border: 2px solid var(--line); border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 4px; position: relative; min-width: 0; }
+.plan.best { border-color: var(--accent); }
+.badge { position: absolute; top: -12px; left: 16px; background: var(--accent); color: var(--accent-ink); font-size: .75rem; font-weight: 700; padding: 3px 12px; border-radius: 999px; letter-spacing: .03em; text-transform: uppercase; }
+.gb { font-family: var(--font-display); font-weight: 800; font-size: 2rem; }
+.price { font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; color: var(--accent); font-variant-numeric: tabular-nums; }
+.price small { font-size: 1rem; color: var(--muted); font-family: var(--font-body); font-weight: 500; }
+.after { font-size: .85rem; color: var(--muted); }
+.plan .btn { margin-top: 12px; }
+.included { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px 22px; color: var(--muted); font-size: .95rem; }
+.included span::before { content: "✓ "; color: var(--ok); font-weight: 700; }
+
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.card { background: var(--surface); border: 2px solid var(--line); border-radius: 22px; padding: 20px; min-width: 0; }
+.card h3 { margin-bottom: 8px; }
+.card ul { margin: 10px 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+.cities { color: var(--muted); font-size: .92rem; margin-top: 10px; }
+
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 18px 0; padding: 0; list-style: none; counter-reset: s; }
+.steps li { counter-increment: s; background: var(--accent-soft); border-radius: 18px; padding: 14px; font-size: .95rem; }
+.steps li::before { content: counter(s); display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-weight: 700; margin-bottom: 8px; }
+.rules { display: flex; flex-direction: column; gap: 8px; margin: 0 0 18px; padding: 0; list-style: none; }
+.rules li { padding-left: 28px; position: relative; }
+.rules li::before { content: "✓"; position: absolute; left: 0; color: var(--ok); font-weight: 800; }
+.phone { max-width: 340px; background: var(--surface); border: 2px solid var(--line); border-radius: 26px; padding: 14px; }
+.phone .bar { font-weight: 700; padding: 2px 6px 10px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+.bubble { background: var(--sms-in); color: var(--sms-ink); border-radius: 18px 18px 18px 6px; padding: 10px 14px; margin-bottom: 8px; font-size: .92rem; max-width: 92%; }
+.bubble.out { background: var(--sms-out); border-radius: 18px 18px 6px 18px; margin-left: auto; width: fit-content; }
+.cap { color: var(--muted); font-size: .85rem; margin-top: 10px; max-width: 340px; }
+
+form { display: flex; flex-direction: column; gap: 16px; }
+fieldset { border: 2px solid var(--line); border-radius: 22px; background: var(--surface); padding: 16px 18px 18px; margin: 0; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+legend { font-family: var(--font-display); font-weight: 700; padding-inline: 6px; }
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: .95rem; }
+input[type=text], input[type=tel], select, textarea { font: 500 1rem var(--font-body); color: var(--fg); background: var(--bg); border: 2px solid var(--line); border-radius: 14px; padding: 12px 14px; min-height: 48px; width: 100%; }
+textarea { min-height: 150px; resize: vertical; font-size: .9rem; line-height: 1.45; }
+.choice { display: flex; flex-direction: row; align-items: flex-start; gap: 10px; font-weight: 500; }
+.choice input { width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--accent); flex: none; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+input[type=date] { min-width: 0; }
+.row .choice { flex: 1 1 200px; border: 2px solid var(--line); border-radius: 14px; padding: 12px; background: var(--bg); }
+#venc-fs .row .choice { flex: 1 1 28%; min-width: 96px; }
+.hint { font-size: .88rem; color: var(--muted); }
+.warn { background: var(--warn-bg); color: var(--warn-ink); border-radius: 14px; padding: 10px 14px; font-size: .92rem; }
+.err { color: #c0361a; font-weight: 600; min-height: 1.4em; }
+:root[data-theme="dark"] .err { color: #ff9a80; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .err { color: #ff9a80; } }
+.send { display: flex; flex-direction: column; gap: 10px; }
+
+details { background: var(--surface); border: 2px solid var(--line); border-radius: 18px; padding: 14px 18px; margin-bottom: 10px; }
+summary { font-weight: 700; cursor: pointer; }
+details p { margin-top: 8px; color: var(--muted); }
+
+.tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; position: sticky; top: 0; z-index: 5; background: var(--bg); padding-block: 8px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
+.tabs button { font: 600 .92rem var(--font-body); color: var(--muted); background: transparent; border: 2px solid var(--line); border-radius: 999px; min-height: 44px; padding: 0 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.tabs button b { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--line); color: var(--fg); font-size: .8rem; flex: none; }
+.tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.tabs button[aria-selected="true"] b { background: rgba(255,255,255,.28); color: var(--accent-ink); }
+.card { display: flex; flex-direction: column; }
+.card.on { border-color: var(--accent); background: var(--accent-soft); }
+.pickbtn { margin-top: auto; align-self: stretch; }
+.card ul + .pickbtn, .card .cities + .pickbtn { margin-top: 16px; }
+.pickbtn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.pickbtn:disabled { opacity: .5; cursor: not-allowed; }
+.ferr { color: #c0361a; font-weight: 600; font-size: .88rem; min-height: 0; }
+:root[data-theme="dark"] .ferr { color: #ff9a80; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ferr { color: #ff9a80; } }
+input[aria-invalid="true"] { border-color: #c0361a; }
+:root[data-theme="dark"] input[aria-invalid="true"] { border-color: #ff9a80; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) input[aria-invalid="true"] { border-color: #ff9a80; } }
+.cats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 14px 0 16px; }
+.cats button { font: 700 .95rem var(--font-body); color: var(--fg); background: var(--surface); border: 2px solid var(--line); border-radius: 16px; min-height: 52px; padding: 6px 10px; cursor: pointer; }
+.cats button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.grp { font-size: 1.05rem; margin: 22px 0 20px; color: var(--muted); font-family: var(--font-body); font-weight: 700; }
+.grp:first-child { margin-top: 4px; }
+.gb.sm { font-size: 1.45rem; line-height: 1.1; }
+.sub { color: var(--muted); font-size: .9rem; font-weight: 600; }
+.de { color: var(--muted); font-size: .9rem; text-decoration: line-through; margin-top: 6px; }
+.inc { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 3px; font-size: .88rem; color: var(--muted); }
+.inc li::before { content: "✓ "; color: var(--ok); font-weight: 700; }
+.note { font-size: .8rem; color: var(--muted); }
+.pick { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.opt { text-align: left; font: 500 .95rem var(--font-body); color: var(--fg); background: var(--surface); border: 2px solid var(--line); border-radius: 18px; padding: 14px 16px; min-height: 64px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; }
+.opt strong { font-family: var(--font-display); font-size: 1.05rem; }
+.opt span { color: var(--muted); font-size: .88rem; }
+.opt[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.link { background: none; border: 0; padding: 8px 0; font: 600 .95rem var(--font-body); color: var(--accent); text-decoration: underline; cursor: pointer; min-height: 40px; }
+.skip { margin-top: 14px; text-align: center; }
+.back { padding-top: 14px; }
+.nav2 { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+.nav2 .btn { flex: 1 1 200px; }
+#p2 details { margin-bottom: 10px; }
+footer { margin-top: 36px; color: var(--muted); font-size: .85rem; display: flex; flex-direction: column; gap: 8px; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="who"><svg class="logo-svg" role="img" aria-label="Brisanet Parceiro Autorizado" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1210.69 307.18"><defs><style>.lg1{fill:#979797;}.lg2{fill-rule:evenodd;}.lg2,.lg3{fill:#ff4f08;}</style></defs><g id="Layer_1-2"><path class="lg3" d="m845.53,212.64h-27.91c-1.96,0-3.55-1.59-3.55-3.55V73.09c0-1.96,1.59-3.55,3.55-3.55h27.91c1.96,0,3.55,1.59,3.55,3.55v3.03c0,3.19,3.84,4.71,6.09,2.45,8.95-8.96,20.17-13.45,33.68-13.45,16.99,0,30.47,5.16,40.45,15.47,9.97,10.31,14.96,24.76,14.96,43.34v85.16c0,1.96-1.59,3.55-3.55,3.55h-27.91c-1.96,0-3.55-1.59-3.55-3.55v-79.39c0-9.97-2.55-17.62-7.65-22.94-5.1-5.32-12.41-7.99-21.92-7.99s-16.72,2.89-22.27,8.67c-5.56,5.78-8.32,13.2-8.32,22.26v79.39c0,1.96-1.59,3.55-3.55,3.55Z"/><path class="lg3" d="m1030.93,65.12c22.43,0,40.56,8.05,54.39,24.14,13.14,15.31,19.43,33.99,18.84,56.06-.05,1.91-1.65,3.42-3.56,3.42h-103.66c-2.22,0-3.9,2.03-3.51,4.22,1.52,8.5,5.36,15.47,11.51,20.94,7.14,6.35,15.92,9.52,26.35,9.52,12.76,0,22.95-5.17,30.56-15.51.67-.92,1.73-1.49,2.87-1.49h30.73c2.55,0,4.27,2.62,3.28,4.97-5.36,12.71-13.62,23.24-24.77,31.57-12.58,9.41-26.8,14.1-42.66,14.1-21.53,0-39.15-7.19-52.86-21.58-13.71-14.39-20.56-32.46-20.56-54.22s7.14-39.31,21.41-54.04c14.28-14.73,31.5-22.1,51.67-22.1Zm-29.98,59.82h60.25c2.61,0,4.4-2.76,3.21-5.08-2.69-5.29-6.38-9.88-11.05-13.78-6.12-5.1-13.48-7.65-22.09-7.65s-15.75,2.5-22.1,7.48c-4.89,3.84-8.71,8.5-11.44,13.96-1.17,2.33.62,5.08,3.22,5.08Z"/><path class="lg3" d="m1172.67,156.9c0,13.82,5.89,20.73,17.67,20.73h11.75c1.96,0,3.55,1.59,3.55,3.55v27.91c0,1.96-1.59,3.55-3.55,3.55h-19.9c-12.92,0-23.57-4.02-31.95-12.07-8.39-8.04-12.57-18.19-12.57-30.42v-62.05c0-1.96-1.59-3.55-3.55-3.55h-21.11c-1.96,0-3.55-1.59-3.55-3.55v-28.01c0-1.85,1.42-3.43,3.27-3.53,22.38-1.24,36.08-15.4,41.09-42.51.31-1.7,1.76-2.95,3.49-2.95h28.2c2.19,0,3.89,1.97,3.51,4.12-2.62,14.81-7.34,26.74-14.15,35.78-1.76,2.33-.08,5.65,2.84,5.65h24.4c1.96,0,3.55,1.59,3.55,3.55v27.91c0,1.96-1.59,3.55-3.55,3.55h-25.87c-1.96,0-3.55,1.59-3.55,3.55v48.8Z"/><path class="lg2" d="m598.67,127.77c-13.36-3.85-22.75-7.41-28.18-10.69-5.43-3.28-8.15-6.96-8.15-11.03,0-3.17,1.58-5.88,4.75-8.15,3.17-2.26,7.13-3.4,11.88-3.4,6.33,0,11.54,1.59,15.62,4.75,2.62,2.04,4.5,4.37,5.62,6.97,1.21,2.8,4.02,4.58,7.07,4.58h19.82c5.3,0,9.09-5.2,7.38-10.21-3.07-8.98-8.11-16.55-15.1-22.72-9.5-8.37-22.74-12.56-39.72-12.56-14.26,0-26.77,3.96-37.51,11.88-10.75,7.92-16.13,18.56-16.13,31.91,0,21.73,15.96,36.89,47.87,45.49,6.79,2.04,11.71,3.57,14.77,4.59,3.05,1.02,6.16,2.72,9.33,5.09,3.17,2.38,4.75,5.15,4.75,8.32,0,4.07-1.53,7.47-4.58,10.18-3.06,2.72-7.19,4.07-12.39,4.07-10.49,0-17.72-3.91-21.71-11.74-1.32-2.59-3.99-4.21-6.9-4.21h-20.93c-5.3,0-8.99,5.18-7.37,10.22,2.59,8.09,7.19,15.43,13.79,22.03,9.28,9.29,22.75,13.92,40.4,13.92,15.84,0,29.03-4.19,39.55-12.56,10.52-8.37,15.79-19.69,15.79-33.95,0-20.37-13.24-34.63-39.72-42.78Z"/><path class="lg2" d="m793.32,69.04h-24.67c-2.94,0-5.32,2.38-5.32,5.32v7.78c0,.66-.84.95-1.24.42-3.83-5.07-9.3-9.18-16.42-12.33-7.92-3.51-16.86-5.15-26.82-4.92-20.37.23-37.17,7.59-50.41,22.07-13.25,14.49-19.86,32.82-19.86,55,.22,22.41,7.18,40.46,20.88,54.15,13.7,13.7,30.27,20.54,49.74,20.54,11.31,0,21.05-2.32,29.2-6.96,6.67-3.8,11.21-7.71,13.64-11.74.37-.61,1.3-.37,1.3.34v8.62c0,2.94,2.38,5.32,5.32,5.32h24.67c2.94,0,5.32-2.38,5.32-5.32V74.36c0-2.94-2.38-5.32-5.32-5.32Zm-31.01,74.69c0,10.18-3.73,19.01-11.2,26.48-6.95,6.95-15.38,10.67-25.28,11.15-10.04.49-20.13-2.84-27.72-9.45-8.81-7.68-13.21-17.97-13.21-30.9,0-11.54,3.68-21.1,11.03-28.69,7.35-7.58,16.58-11.37,27.67-11.37s20.31,3.62,27.67,10.86c7.35,7.25,11.03,16.3,11.03,27.16v4.75Z"/><path class="lg2" d="m449.8,68.9h-10.34c-24.01,0-37.73,16.94-43.77,27.01-.36.6-1.27.34-1.27-.36v-21.33c0-2.94-2.38-5.32-5.32-5.32h-24.21c-2.94,0-5.32,2.38-5.32,5.32v133.11c0,2.94,2.38,5.32,5.32,5.32h24.21c2.94,0,5.32-2.38,5.32-5.32v-66.08c0-37.45,55.38-38.04,55.38-38.04,2.94,0,5.32-2.38,5.32-5.32v-23.68c0-2.94-2.38-5.32-5.32-5.32Z"/><path class="lg2" d="m277.96,65.38c-10.64-.23-20.15,1.87-28.52,6.28-7.7,4.05-13.86,8.73-18.5,14.03-.42.48-1.19.2-1.19-.44v-37.6h0V4.96c0-2.25-1.5-4.12-3.55-4.73-.07-.14-.19-.23-.4-.23h-26.06c-2.74,0-4.96,2.22-4.96,4.96v202.45c0,2.94,2.38,5.32,5.32,5.32h24.33c2.94,0,5.32-2.38,5.32-5.32v-10.51c0-.69.89-.95,1.27-.37,3.29,5.03,8.41,9.58,15.37,13.65,7.92,4.64,17.43,6.96,28.52,6.96,19.47,0,36.1-7.24,49.91-21.73,13.81-14.48,20.71-32.7,20.71-54.66.22-22.4-6.17-40.51-19.18-54.32-13.02-13.8-29.15-20.82-48.38-21.05Zm20.2,105.41c-7.36,7.59-16.7,11.37-28.01,11.37-10.64,0-19.86-3.68-27.67-11.03-7.81-7.35-11.71-16.47-11.71-27.33v-4.41c0-11.31,3.9-20.65,11.71-28.01,7.81-7.35,17.03-11.03,27.67-11.03,11.31,0,20.65,3.74,28.01,11.2,7.35,7.47,11.03,17.32,11.03,29.54s-3.68,22.13-11.03,29.71Z"/><path class="lg2" d="m515.1,74.22c0-2.94-2.38-5.32-5.32-5.32h-30.34s-10.12.01-10.12.01c-2.94,0-5.32,2.38-5.32,5.32v23.65c0,2.94,2.38,5.32,5.32,5.32h4.8c2.94,0,5.32,2.38,5.32,5.32v98.81c0,2.94,2.38,5.32,5.32,5.32h25.02c2.94,0,5.32-2.38,5.32-5.32v-2.78h.11v-104.17h-.11v-26.16Z"/><circle class="lg3" cx="492.58" cy="22.52" r="22.52"/><path class="lg2" d="m45.09,115.06c-.25,16.05-5.29,30.88-12.94,44.22-.57.99-1.89,1.28-2.82.62-6.17-4.36-13.36-8.81-22.06-14.1-9.21-5.61-10.05-10.57-.26-15.04,14.7-6.7,25.56-17.5,33.58-30.12.97-1.53,3.33-1,3.59.8.68,4.56.98,9.09.91,13.62Z"/><path class="lg2" d="m94.18,115.06c-.46,28.71-16.21,53.52-34.88,72.89-.88.91-2.38.75-3.06-.31-4.38-6.86-8.82-12.31-13.92-17.19-.67-.64-.8-1.64-.33-2.43,9.4-15.62,15.71-33.31,16.01-52.75.01-.51.01-1.01.01-1.52,0-11.53-2.1-23.09-6.3-34.66-.16-.43-.16-.9,0-1.33,4.27-11.57,7-23.52,8.79-34.56.27-1.66,2.37-2.23,3.45-.94,20.46,24.55,30.6,48.93,30.21,72.8Z"/><path class="lg2" d="m80,215.62c-.4.3-.82.57-1.24.76-1.61.83-3.35.96-4.9.46-1.67-.48-3.26-1.64-4.11-3.5-1.74-3.82-3.42-7.33-5.05-10.59-.38-.76-.23-1.67.37-2.26,22.03-21.79,41.47-50.72,42.02-85.22.01-.5.01-.99.01-1.5,0-30.34-14.56-60.9-43.4-91.18-.38-.4-.58-.96-.53-1.52.49-5.96.77-11.11.98-15.11.19-3.56,2.01-5.69,4.53-5.94h.03c.44-.04.9-.02,1.4.06.01-.02.02-.02.04,0,.97.15,2.09.43,3.07,1.22,120.11,97.33,59.69,174.15,6.77,214.31Z"/><path class="lg1" d="m366.4,250.24h9.68l11.12-.08c11.84-.08,20.15,7.76,20.15,18.71s-8,18.79-19.27,18.79h-10.72v18.55h-10.96v-55.98Zm10.96,10v17.35h10.48c4.88,0,8.4-3.6,8.4-8.72s-3.84-8.72-9.28-8.64h-9.6Z"/><path class="lg1" d="m417.26,294.94c0-8.48,5.92-12.88,16.15-12.88h9.36c-.72-5.04-3.04-7.84-7.6-7.84-3.44,0-6.16,1.36-8,4.56l-8.88-3.12c2.32-5.12,7.44-10.4,17.03-10.4,11.92,0,17.83,6.64,17.83,18.87v22.07h-9.84l-.08-4.32c-2.24,3.44-5.76,5.28-10.88,5.28-9.6,0-15.11-4.4-15.11-12.24Zm25.75-5.12h.08v-.24h-6.32c-7.04,0-9.36,1.92-9.36,5.04,0,2.64,2.4,4.16,6.48,4.16,5.28,0,9.12-4.4,9.12-8.96Z"/><path class="lg1" d="m467.89,266.23h10.56v7.36c3.28-5.04,8.72-7.52,14.16-7.52v10.24c-7.36,0-14.16,2.64-14.16,8.88v21.03h-10.56v-39.99Z"/><path class="lg1" d="m502.44,286.22c0-12.24,8.8-20.95,21.27-20.95,8,0,15.11,4.16,18.15,11.52l-9.92,3.52c-1.52-3.12-4.88-5.12-8.72-5.12-5.92,0-10,4.56-10,11.04s4.16,11.04,10.16,11.04c3.84,0,7.2-2.16,8.72-5.52l10,3.52c-3.12,7.6-10.16,11.92-18.23,11.92-12.55,0-21.43-8.72-21.43-20.95Z"/><path class="lg1" d="m553.22,286.22c0-12.32,8.56-20.95,20.63-20.95,10.4,0,19.35,8.56,19.35,23.51h-29.19c.88,6,5.12,9.2,10.4,9.2,4.32,0,6.96-2.16,8.56-5.2l9.28,3.68c-3.36,6.72-9.6,10.72-18.87,10.72-11.84,0-20.15-8.64-20.15-20.95Zm11.28-5.28h17.59c-1.44-4.8-4.56-6.8-8.64-6.8-4.64,0-7.68,2.24-8.96,6.8Z"/><path class="lg1" d="m606.24,253.68c0-3.28,2.8-6.08,6.08-6.08s6.08,2.8,6.08,6.08-2.8,6.08-6.08,6.08-6.08-2.8-6.08-6.08Zm.8,12.56h10.56v39.99h-10.56v-39.99Z"/><path class="lg1" d="m633.76,266.23h10.56v7.36c3.28-5.04,8.72-7.52,14.16-7.52v10.24c-7.36,0-14.16,2.64-14.16,8.88v21.03h-10.56v-39.99Z"/><path class="lg1" d="m669.02,286.22c0-12.32,8.64-20.95,20.79-20.95s20.87,8.64,20.87,20.95-8.56,20.95-20.71,20.95-20.95-8.64-20.95-20.95Zm30.87,0c0-6.56-4.16-11.2-10.08-11.2s-10,4.64-10,11.2,4.16,11.2,10.16,11.2,9.92-4.64,9.92-11.2Z"/><path class="lg1" d="m768.35,250.24h11.68l22.07,55.98h-11.6l-4.72-12.32h-23.19l-4.72,12.32h-11.6l22.07-55.98Zm13.75,33.99l-7.92-20.63-7.92,20.63h15.83Z"/><path class="lg1" d="m830.97,297.26c5.52.08,8.48-3.44,8.48-10.08v-20.95h10.56v39.99h-9.92l-.4-5.36c-2.64,4.16-6.72,6.32-11.76,6.32-9.68,0-15.03-5.84-14.95-18.07v-22.87h10.56v20.47c0,8.08,2.96,10.48,7.44,10.56Z"/><path class="lg1" d="m869.36,294.54v-19.35h-6.48v-8.96h6.48v-12.48h10.56v12.48h10v8.96h-10v17.03c0,3.52,1.44,5.2,4.4,5.2,1.04,0,2.32-.48,3.76-1.44l3.68,7.92c-2.64,1.92-5.92,3.28-8.96,3.28-8.88,0-13.43-4.48-13.43-12.64Z"/><path class="lg1" d="m902.95,286.22c0-12.32,8.64-20.95,20.79-20.95s20.87,8.64,20.87,20.95-8.56,20.95-20.71,20.95-20.95-8.64-20.95-20.95Zm30.87,0c0-6.56-4.16-11.2-10.08-11.2s-10,4.64-10,11.2,4.16,11.2,10.16,11.2,9.92-4.64,9.92-11.2Z"/><path class="lg1" d="m958.69,266.23h10.56v7.36c3.28-5.04,8.72-7.52,14.16-7.52v10.24c-7.36,0-14.16,2.64-14.16,8.88v21.03h-10.56v-39.99Z"/><path class="lg1" d="m995.24,253.68c0-3.28,2.8-6.08,6.08-6.08s6.08,2.8,6.08,6.08-2.8,6.08-6.08,6.08-6.08-2.8-6.08-6.08Zm.8,12.56h10.56v39.99h-10.56v-39.99Z"/><path class="lg1" d="m1020.75,298.54l19.91-23.59h-19.91v-8.72h32.95v7.6l-19.99,23.75h20.07v8.64h-33.03v-7.68Z"/><path class="lg1" d="m1065.86,294.94c0-8.48,5.92-12.88,16.15-12.88h9.36c-.72-5.04-3.04-7.84-7.6-7.84-3.44,0-6.16,1.36-8,4.56l-8.88-3.12c2.32-5.12,7.44-10.4,17.03-10.4,11.92,0,17.83,6.64,17.83,18.87v22.07h-9.84l-.08-4.32c-2.24,3.44-5.76,5.28-10.88,5.28-9.6,0-15.11-4.4-15.11-12.24Zm25.75-5.12h.08v-.24h-6.32c-7.04,0-9.36,1.92-9.36,5.04,0,2.64,2.4,4.16,6.48,4.16,5.28,0,9.12-4.4,9.12-8.96Z"/><path class="lg1" d="m1114.32,286.22c0-12.79,7.04-20.95,18.07-20.95,5.28,0,9.36,2.24,12,6.32v-21.35h10.56v55.98h-10l-.4-5.52c-2.64,4.16-6.8,6.48-12.16,6.48-11.04,0-18.07-8.16-18.07-20.95Zm30.07,1.2v-2.4c-.48-6-4.16-10-9.36-10-5.68,0-9.76,4.64-9.76,11.2s4.16,11.28,9.84,11.28c5.12,0,8.8-4.08,9.28-10.08Z"/><path class="lg1" d="m1169.03,286.22c0-12.32,8.64-20.95,20.79-20.95s20.87,8.64,20.87,20.95-8.56,20.95-20.71,20.95-20.95-8.64-20.95-20.95Zm30.87,0c0-6.56-4.16-11.2-10.08-11.2s-10,4.64-10,11.2,4.16,11.2,10.16,11.2,9.92-4.64,9.92-11.2Z"/></g></svg><span>Ivam Alves · vendedor</span></div>
+    <a class="btn small" href="https://wa.me/5583999727048" target="_blank" rel="noopener">Falar no WhatsApp</a>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Etapas">
+    <button type="button" role="tab" id="tab1" aria-controls="p1" aria-selected="true" data-go="1"><b>1</b> Planos</button>
+    <button type="button" role="tab" id="tab2" aria-controls="p2" aria-selected="false" data-go="2"><b>2</b> Detalhes</button>
+    <button type="button" role="tab" id="tab3" aria-controls="p3" aria-selected="false" data-go="3"><b>3</b> Pedir</button>
+  </nav>
+
+  <div class="panel" id="p1" role="tabpanel" aria-labelledby="tab1">
+  <div class="hero">
+    <h1>Chip, Wi-Fi e combos Brisanet, sem enrolação</h1>
+    <p>Escolha o plano e deixe o seu pré-cadastro pronto. Eu recebo tudo no WhatsApp e cuido do resto.</p>
+    <div class="tags">
+      <span class="tag">Chip grátis</span>
+      <span class="tag">Portabilidade grátis</span>
+      <span class="tag line">Entrega e atendimento rápido</span>
+    </div>
+    <div class="bf" id="bf-banner" hidden>
+      <div><strong>Black Friday 5G até 30/11</strong><span>50GB por R$ 39,99 e 120GB por R$ 49,99 (por 24 meses)</span></div>
+      <a class="btn small" href="#planos" data-bf-ver>Ver ofertas</a>
+    </div>
+  </div>
+  <p class="notice">Esta é a página de atendimento do vendedor Ivam Alves, não o site oficial da Brisanet (brisanet.com.br).</p>
+
+  <section id="planos">
+    <h2>Escolha seu plano</h2>
+    <div class="cats" role="group" aria-label="Tipo de plano">
+      <button type="button" data-cat="chip" aria-pressed="true">Chip 5G</button>
+      <button type="button" data-cat="fibra" aria-pressed="false">Wi-Fi Fibra</button>
+      <button type="button" data-cat="fwa" aria-pressed="false">Wi-Fi sem cabo (FWA)</button>
+      <button type="button" data-cat="combo" aria-pressed="false">Combos</button>
+    </div>
+    <p class="lead" id="cat-lead"></p>
+    <div id="plans"></div>
+    <div class="included" id="included"></div>
+    <p class="skip"><button type="button" class="link" data-go="3">Já sei o que quero, ir direto ao pedido</button></p>
+  </section>
+
+  </div>
+
+  <div class="panel" id="p2" role="tabpanel" aria-labelledby="tab2" hidden>
+  <section id="numq" data-chiponly>
+    <h2>Seu número</h2>
+    <p class="lead">Você quer manter o seu número atual ou ter um número novo?</p>
+    <div class="pick" role="group" aria-label="Número">
+      <button type="button" class="opt" data-port="sim" aria-pressed="false"><strong>Manter meu número</strong><span>Portabilidade grátis</span></button>
+      <button type="button" class="opt" data-port="nao" aria-pressed="false"><strong>Número novo</strong><span>Sem burocracia</span></button>
+    </div>
+  </section>
+
+  <section id="portabilidade" hidden>
+    <h2>Como funciona a portabilidade</h2>
+    <p class="lead">A portabilidade é grátis. Confira antes de pedir:</p>
+    <ul class="rules">
+      <li>O seu plano atual não pode ter fidelidade ativa. Confirme com a sua operadora.</li>
+      <li>O chip atual precisa estar no seu CPF. Se estiver no nome de outra pessoa, a portabilidade é cancelada e a linha fica com um número provisório.</li>
+      <li>Mantenha o chip atual ativo até responder o SMS de confirmação.</li>
+    </ul>
+    <ol class="steps">
+      <li>Você faz o pré-cadastro e eu finalizo o pedido.</li>
+      <li>Chega um SMS do número <strong>7678</strong> no seu chip atual.</li>
+      <li>Responda <strong>SIM</strong> em até 24 horas.</li>
+      <li>O número é transferido em até 3 dias. Até lá, você usa um número provisório.</li>
+    </ol>
+    <div class="phone" style="margin-top:18px" aria-label="Exemplo das mensagens de SMS">
+      <div class="bar">7678</div>
+      <div class="bubble">Ola, voce solicitou a portabilidade do (83) 9XXXX-XXXX para BRISANET? Para sua seguranca, responda em ate 24 horas: SIM para confirmar ou NAO para cancelar.</div>
+      <div class="bubble out">Sim</div>
+      <div class="bubble">Ola, recebemos sua confirmacao para seguir com o pedido de portabilidade do (83) 9XXXX-XXXX para a BRISANET.</div>
+    </div>
+    <p class="cap">Exemplo das mensagens que chegam por SMS. O número do exemplo é fictício.</p>
+    <div class="warn" style="margin-top:14px">Se você não responder SIM, a portabilidade é cancelada e a linha continua com o número provisório.</div>
+  </section>
+
+  <section id="instal" hidden>
+    <h2>Como funciona</h2>
+    <ul class="rules" id="instal-lista"></ul>
+  </section>
+
+  <section id="duvidas">
+    <h2>Dúvidas frequentes</h2>
+    <details data-chiponly><summary>Quanto tempo leva para ativar?</summary><p>Os dois chips, físico e virtual, são ativados no mesmo dia. Se você pediu portabilidade, a Brisanet empresta um número provisório, e você já usa internet e faz ligações nele. O seu número antigo chega quando a operadora anterior concluir a troca, o que pode levar até 3 dias.</p></details>
+    <details data-chiponly><summary>O chip tem custo?</summary><p>Não. O chip, físico ou virtual, e a portabilidade são grátis.</p></details>
+    <details><summary>E depois do período promocional?</summary><p>O preço promocional vale pelo período indicado em cada plano (na maioria, 12 meses). Depois, passa a valer o valor que aparece em "depois" em cada plano.</p></details>
+    <details data-nochip hidden><summary>A instalação tem custo?</summary><p>Não. Nos planos de fibra e nos combos, a instalação e o Wi-Fi estão inclusos.</p></details>
+    <details><summary>Todos os planos têm contrato?</summary><p>Sim, todos os planos da Brisanet têm contrato padrão de 12 meses.</p></details>
+    <details><summary>Quais documentos eu preciso?</summary><p>Eu não peço foto de documento pelo WhatsApp. As fotos são enviadas por você mesmo, direto no aplicativo da Brisanet que eu te indico durante o atendimento. Eu te oriento passo a passo.</p></details>
+    <details data-chiponly><summary>Meu celular aceita eSIM?</summary><p>Aceitam os Android compatíveis com eSIM e os iPhone 13 ou mais novos. Se tiver dúvida, me mande o modelo.</p></details>
+  </section>
+
+  <section id="chip" data-chiponly>
+    <h2>Chip físico ou virtual?</h2>
+    <p class="lead">Os dois têm o mesmo plano e o mesmo preço. O que muda é como o chip chega até você. Escolha o seu:</p>
+    <div class="two">
+      <div class="card" data-card="Físico">
+        <h3>Chip físico</h3>
+        <p>O cartão chega na sua mão, entregue por mim.</p>
+        <ul>
+          <li><strong>São Bento:</strong> entrega no mesmo dia.</li>
+          <li><strong>Demais cidades:</strong> entrega combinada pelo WhatsApp.</li>
+        </ul>
+        <p class="cities">Disponível em São Bento (PB), Paulista (PB), Brejo do Cruz (PB), Belém do Brejo do Cruz (PB), São José do Brejo do Cruz (PB), Jardim de Piranhas (RN) e Serra Negra do Norte (RN).</p>
+<button type="button" class="btn ghost pickbtn" data-tipo="Físico" aria-pressed="false">Quero o chip físico</button>
+      </div>
+      <div class="card" data-card="Virtual (eSIM)">
+        <h3>Chip virtual (eSIM)</h3>
+        <p>Sem esperar entrega. Tudo é feito pelo WhatsApp e eu envio o QR code ali mesmo, na conversa.</p>
+        <ul>
+          <li>Em qualquer cidade com cobertura Brisanet.</li>
+          <li>Celulares Android compatíveis com eSIM e iPhone 13 ou mais novo.</li>
+        </ul>
+<button type="button" class="btn ghost pickbtn" data-tipo="Virtual (eSIM)" aria-pressed="false">Quero o chip virtual</button>
+      </div>
+    </div>
+  </section>
+
+    <div class="nav2">
+      <button type="button" class="btn ghost" data-go="1">Voltar aos planos</button>
+      <button type="button" class="btn" data-go="3">Continuar para o pedido</button>
+    </div>
+  </div>
+
+  <div class="panel" id="p3" role="tabpanel" aria-labelledby="tab3" hidden>
+  <section id="cadastro">
+    <p class="back"><button type="button" class="link" data-go="2">← Voltar</button></p>
+    <h2>Pré-cadastro</h2>
+    <p class="lead">Preencha e toque em enviar. O WhatsApp abre com a mensagem pronta para mim.</p>
+    <form id="form" novalidate>
+      <fieldset>
+        <legend>Seu plano</legend>
+        <label for="plano">Plano
+          <select id="plano"><option value="">Escolha um plano</option></select>
+        </label>
+        <label for="cidade">Cidade
+          <select id="cidade">
+            <option value="">Escolha sua cidade</option>
+            <optgroup label="Minhas cidades de atendimento">
+              <option>São Bento (PB)</option><option>Paulista (PB)</option><option>Brejo do Cruz (PB)</option><option>Belém do Brejo do Cruz (PB)</option><option>São José do Brejo do Cruz (PB)</option><option>Jardim de Piranhas (RN)</option><option>Serra Negra do Norte (RN)</option>
+            </optgroup>
+            <optgroup label="Outra">
+              <option value="outra">Outra cidade</option>
+            </optgroup>
+          </select>
+        </label>
+        <label for="outra" id="outra-wrap" hidden>Qual cidade e estado?
+          <input type="text" id="outra" autocomplete="address-level2" placeholder="Ex.: Patos (PB)">
+        </label>
+        <div class="row" id="tipo-wrap" role="radiogroup" aria-label="Tipo de chip">
+          <label class="choice" for="t-fisico"><input type="radio" name="tipo" id="t-fisico" value="Físico"><span>Chip físico<br><span class="hint">Entregue por mim</span></span></label>
+          <label class="choice" for="t-virtual"><input type="radio" name="tipo" id="t-virtual" value="Virtual (eSIM)"><span>Chip virtual (eSIM)<br><span class="hint">Ativação pelo WhatsApp</span></span></label>
+        </div>
+        <div class="hint" id="tipo-hint" hidden></div>
+        <div class="hint" id="cobertura-hint" hidden>A disponibilidade depende do endereço. Eu confiro com você antes de finalizar.</div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Seus dados</legend>
+        <p class="hint">Esses dados seguem direto para o meu WhatsApp e não ficam guardados nesta página. Uso só para fazer o seu pedido na Brisanet. Não precisa enviar foto de documento: só os números. As fotos você envia depois, no aplicativo da Brisanet, e o próprio sistema confere.</p>
+        <label for="nome">Nome completo
+          <input type="text" id="nome" autocomplete="name">
+        </label>
+        <div class="grid2">
+          <label for="cpf">CPF
+            <input type="text" id="cpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14">
+          </label>
+          <label for="rg">RG
+            <input type="text" id="rg" autocomplete="off">
+          </label>
+        </div>
+        <label for="nasc">Data de nascimento
+          <input type="text" id="nasc" inputmode="numeric" autocomplete="bday" placeholder="dd/mm/aaaa" maxlength="10">
+        </label>
+        <label for="email">E-mail
+          <input type="text" id="email" inputmode="email" autocomplete="email" autocapitalize="none" placeholder="voce@exemplo.com">
+        </label>
+        <div class="grid2">
+          <label for="tel1">Telefone (WhatsApp)
+            <input type="tel" id="tel1" inputmode="tel" autocomplete="tel" placeholder="(83) 9 0000-0000" maxlength="16">
+          </label>
+          <label for="tel2">Outro telefone (opcional)
+            <input type="tel" id="tel2" inputmode="tel" placeholder="(83) 9 0000-0000" maxlength="16">
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Seu endereço</legend>
+        <div class="grid2">
+          <label for="cep">CEP
+            <input type="text" id="cep" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" maxlength="9">
+          </label>
+          <label for="num">Número
+            <input type="text" id="num" autocomplete="off">
+          </label>
+        </div>
+        <label for="rua">Rua
+          <input type="text" id="rua" autocomplete="address-line1">
+        </label>
+        <label for="bairro">Bairro
+          <input type="text" id="bairro" autocomplete="address-level3">
+        </label>
+        <label for="ref">Ponto de referência (opcional)
+          <input type="text" id="ref">
+        </label>
+        <p class="hint">A cidade e o estado são os que você escolheu lá em cima.</p>
+      </fieldset>
+
+      <fieldset id="modelo-campos" hidden>
+        <legend>Seu celular</legend>
+        <label for="modelo">Marca e modelo do aparelho
+          <input type="text" id="modelo" autocomplete="off" placeholder="Ex.: Samsung Galaxy S23">
+        </label>
+        <p class="hint">É o aparelho onde o chip vai ser usado. Se o plano tiver mais de um chip, informe o do titular.</p>
+      </fieldset>
+
+      <fieldset id="inst-campos" hidden>
+        <legend>Instalação</legend>
+        <p class="hint" id="inst-nota"></p>
+        <label for="horario-inst">Melhor horário para a instalação
+          <select id="horario-inst">
+            <option>Manhã</option><option>Tarde</option><option>Qualquer horário</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset id="fisico-campos" hidden>
+        <legend>Entrega do chip físico</legend>
+        <p class="hint" id="entrega-nota"></p>
+        <label for="horario">Melhor horário para receber
+          <select id="horario">
+            <option>Manhã</option><option>Tarde</option><option>Noite</option><option>Qualquer horário</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset id="virtual-campos" hidden>
+        <legend>Seu celular (chip virtual)</legend>
+        <label for="aparelho">Seu aparelho aceita eSIM?
+          <select id="aparelho">
+            <option value="">Escolha uma opção</option>
+            <option>Android com eSIM</option>
+            <option>iPhone 13 ou mais novo</option>
+            <option>Não sei se o meu serve</option>
+          </select>
+        </label>
+        <div class="warn" id="aparelho-aviso" hidden>Sem problema. Informe o modelo do celular logo acima e eu confiro se ele aceita eSIM antes de seguir.</div>
+      </fieldset>
+
+      <fieldset id="venc-fs">
+        <legend>Vencimento da fatura</legend>
+        <p class="hint">Escolha o melhor dia para pagar a fatura todo mês.</p>
+        <div class="row" role="radiogroup" aria-label="Dia de vencimento">
+          <label class="choice" for="v05"><input type="radio" name="venc" id="v05" value="05"><span>Dia 05</span></label>
+          <label class="choice" for="v10"><input type="radio" name="venc" id="v10" value="10"><span>Dia 10</span></label>
+          <label class="choice" for="v15"><input type="radio" name="venc" id="v15" value="15"><span>Dia 15</span></label>
+          <label class="choice" for="v20"><input type="radio" name="venc" id="v20" value="20"><span>Dia 20</span></label>
+          <label class="choice" for="v25"><input type="radio" name="venc" id="v25" value="25"><span>Dia 25</span></label>
+          <label class="choice" for="v30"><input type="radio" name="venc" id="v30" value="30"><span>Dia 30</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset id="port-fs">
+        <legend>Portabilidade</legend>
+        <div class="row" role="radiogroup" aria-label="Portabilidade">
+          <label class="choice" for="p-nao"><input type="radio" name="port" id="p-nao" value="nao"><span>Quero um número novo</span></label>
+          <label class="choice" for="p-sim"><input type="radio" name="port" id="p-sim" value="sim"><span>Quero manter meu número</span></label>
+        </div>
+        <div class="warn" id="bf-aviso" hidden>No plano de 120GB da Black Friday, os 60GB de bônus só são liberados depois que a portabilidade for concluída.</div>
+        <div id="port-campos" hidden style="display:flex;flex-direction:column;gap:12px" >
+          <label for="numero">Número que você quer trazer
+            <input type="tel" id="numero" inputmode="tel" placeholder="(83) 9 0000-0000" autocomplete="tel">
+          </label>
+          <label for="operadora">Operadora atual
+            <select id="operadora"><option value="">Escolha</option><option>Vivo</option><option>Claro</option><option>TIM</option><option>Oi</option><option>Outra</option></select>
+          </label>
+          <label class="choice" for="c-cpf"><input type="checkbox" id="c-cpf"><span>O chip atual está no meu CPF</span></label>
+          <label class="choice" for="c-fid"><input type="checkbox" id="c-fid"><span>Não tenho plano com fidelidade ativa</span></label>
+          <label class="choice" for="c-sms"><input type="checkbox" id="c-sms"><span>Vou manter o chip atual ativo até responder SIM ao SMS do 7678</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Pré-visualização</legend>
+        <p class="hint">É isto que vai aparecer no WhatsApp. Você ainda confere e aperta enviar lá.</p>
+        <textarea id="previa" readonly aria-label="Mensagem que será enviada"></textarea>
+      </fieldset>
+
+      <label class="choice" for="aceite"><input type="checkbox" id="aceite"><span>Aceito enviar estes dados pessoais (incluindo CPF e RG) ao Ivam Alves pelo WhatsApp, só para fazer o meu cadastro na Brisanet.</span></label>
+
+      <div class="send">
+        <a class="btn" id="enviar" href="https://wa.me/5583999727048" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+        <button type="button" class="btn ghost" id="copiar">Copiar mensagem</button>
+        <p class="err" id="erro" role="alert"></p>
+        <p class="hint">Ao tocar em enviar, o WhatsApp abre com a mensagem pronta. O pedido só chega para mim quando você apertar o botão de enviar lá.</p>
+      </div>
+    </form>
+  </section>
+
+  </div>
+
+  <footer>
+    <p>*Preços promocionais por 12 meses, conforme a tabela vigente. Consulte condições e disponibilidade técnica. Contrato de 12 meses.</p>
+    <p id="bf-foot" hidden>Black Friday 5G: ofertas válidas até 30/11/2026, por 24 meses. Depois, R$ 44,99 (50GB) e R$ 54,99 (120GB). O bônus de 60GB do plano de 120GB é liberado com a portabilidade concluída.</p>
+    <p>Ivam Alves, vendedor Brisanet. WhatsApp: 83 9 9972-7048. Página independente do vendedor. Os dados do formulário não ficam guardados aqui: seguem direto para o WhatsApp do vendedor quando você envia.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var CATS = {
+    chip: { nome: "Chip 5G", lead: "Preço promocional por 12 ou 24 meses, conforme o plano. Depois, vale o valor indicado em cada plano.",
+      inc: ["WhatsApp, Facebook e Waze ilimitados", "Ligações e SMS ilimitados", "Chip grátis"] },
+    fibra: { nome: "Wi-Fi Fibra", lead: "Internet de fibra óptica. Confira o prazo promocional de cada plano.",
+      inc: ["Instalação e Wi-Fi inclusos"] },
+    fwa: { nome: "Wi-Fi sem cabo (FWA 5G)", lead: "Internet em casa sem cabo, com roteador incluso em comodato.",
+      inc: ["Roteador incluso", "Sem obra e sem cabos"] },
+    combo: { nome: "Combo", lead: "Fibra, chip e streaming na mesma fatura. Confira o prazo promocional de cada combo.",
+      inc: ["Instalação e Wi-Fi inclusos", "Ligações e SMS ilimitados", "Aplicativos ilimitados no chip"] }
+  };
+  var CI = ["Instalação e Wi-Fi inclusos", "Ligações e SMS ilimitados", "Aplicativos ilimitados"];
+  function ch(gb, price, then, best) { return { id: "chip-" + gb, cat: "chip", name: gb, price: price, per: "12 meses", then: then, best: best, msg: "Chip " + gb }; }
+  var FI = ["Instalação e Wi-Fi inclusos"], FW = ["Roteador incluso (comodato)", "Internet sem cabos"];
+  function fb(id, name, de, price, per, then, best) { return { id: "fibra-" + id, cat: "fibra", name: name, sub: "Wi-Fi fibra", de: de, price: price, per: per, then: then, items: FI, best: best, msg: "Wi-Fi Fibra " + name }; }
+  function fw(name, price, best) { return { id: "fwa-" + name, cat: "fwa", name: name, sub: "Wi-Fi sem cabo (FWA 5G)", price: price, items: FW, best: best, msg: "Wi-Fi FWA " + name }; }
+  function cb(id, group, name, sub, de, price, per, then, items, note, best) {
+    return { id: "combo-" + id, cat: "combo", group: group, name: name, sub: sub, de: de, price: price, per: per, then: then, items: items, note: note, best: best, small: true, msg: "Combo: " + name + " (" + sub + ")" };
+  }
+  var G1 = "Fibra + chip (Faz as Contas)", G2 = "Família: fibra + 3 chips", G3 = "Fibra + chip + Globoplay", G4 = "Fibra + chip + Netflix", G5 = "Fibra + chip + SKY+", G6 = "Fibra + streaming (sem chip)";
+  function bf(gb, then, note) { return { id: "chip-bf-" + gb, cat: "chip", name: gb, price: gb === "50GB" ? "39,99" : "49,99", per: "24 meses", then: then, note: note, best: true, badge: "Black Friday", until: "2026-11-30", msg: "Chip " + gb + " Black Friday" }; }
+  var PLANS = [
+    bf("50GB", "44,99", "Número novo ou portabilidade"), bf("120GB", "54,99", "60GB + 60GB de bônus de portabilidade concluída"),
+    ch("20GB", "29,99", "34,99"), ch("40GB", "39,99", "44,99", true), ch("60GB", "49,99", "54,99"),
+    ch("100GB", "59,99", "69,99", true), ch("150GB", "79,99", "84,99"), ch("250GB", "99,90", "119,99"),
+    fb("350", "350 Mega", "89,90", "84,90", "24 meses", "89,90"), fb("500", "500 Mega", "94,90", "84,90", "12 meses", "94,90", true),
+    fb("700", "700 Mega", "109,90", "99,90", "12 meses", "109,90"), fb("1giga", "1 Giga", "", "149,90"),
+    fw("350GB", "99,90"), fw("500GB", "129,99", true), fw("700GB", "149,99"), fw("1TB", "179,99"),
+    cb("fc500", G1, "500 Mega + 20GB", "Fibra + 1 chip", "129,89", "99,99", "12 meses", "119,89", CI.concat(["2GB de roaming"]), "Linhas adicionais: R$ 15 cada.", true),
+    cb("fc700", G1, "700 Mega + 50GB", "Fibra + 1 chip", "179,89", "119,99", "12 meses", "129,98", CI.concat(["3GB de roaming"]), "Linhas adicionais: R$ 25 cada."),
+    cb("fam500", G2, "500 Mega + 3 chips de 20GB", "Fibra + 3 chips", "179,96", "99,99", "3 meses", "164,96", CI.concat(["2GB de roaming por chip"])),
+    cb("fam700", G2, "700 Mega + 3 chips de 20GB", "Fibra + 3 chips", "199,87", "149,99", "12 meses", "174,86", CI.concat(["3GB de roaming por chip"])),
+    cb("glo500", G3, "500 Mega + 20GB", "Fibra + 1 chip + Globoplay Premium", "169,79", "122,89", "12 meses", "142,79", CI.concat(["Globoplay Premium"])),
+    cb("glo700", G3, "700 Mega + 50GB", "Fibra + 1 chip + Globoplay Premium", "219,79", "142,89", "12 meses", "152,88", CI.concat(["Globoplay Premium"])),
+    cb("net500", G4, "500 Mega + 20GB", "Fibra + 1 chip + Netflix", "150,79", "115,89", "3 meses", "120,89", CI.concat(["Netflix Padrão com Anúncios"]), "Depois de 12 meses: R$ 140,79/mês."),
+    cb("net700", G4, "700 Mega + 50GB", "Fibra + 1 chip + Netflix", "200,79", "135,89", "3 meses", "140,89", CI.concat(["Netflix Padrão com Anúncios"]), "Depois de 12 meses: R$ 150,88/mês."),
+    cb("sky500", G5, "500 Mega + 20GB", "Fibra + 1 chip + SKY+ Light", "139,79", "109,89", "12 meses", "129,79", CI.concat(["SKY+ Light"])),
+    cb("sky700", G5, "700 Mega + 50GB", "Fibra + 1 chip + SKY+ Light e Amazon Prime", "204,69", "144,79", "12 meses", "154,78", CI.concat(["SKY+ Light com Amazon Prime"])),
+    cb("sg500", G6, "500 Mega + Globoplay", "Fibra + Globoplay Premium", "134,80", "107,80", "12 meses", "117,80", FI.concat(["Globoplay Premium"])),
+    cb("sn600", G6, "600 Mega + Netflix", "Fibra + Netflix Padrão com Anúncios", "120,80", "99,90", "3 meses", "120,80", FI.concat(["Netflix Padrão com Anúncios"])),
+    cb("ss500", G6, "500 Mega + SKY+ Light", "Fibra + SKY+ Light", "104,80", "94,80", "12 meses", "104,80", FI.concat(["SKY+ Light"])),
+    cb("sa500", G6, "500 Mega + SKY+ Light e Amazon Prime", "Fibra + SKY+ Light e Amazon Prime", "119,70", "109,70", "12 meses", "119,70", FI.concat(["SKY+ Light com Amazon Prime"]))
+  ];
+  PLANS.forEach(function (p) { p.chips = p.cat === "chip" ? 1 : 0; });
+  var BF_ON = new Date() <= new Date("2026-11-30T23:59:59");
+  PLANS = PLANS.filter(function (p) { return !p.until || new Date() <= new Date(p.until + "T23:59:59"); });
+  var $ = function (id) { return document.getElementById(id); };
+  $("bf-banner").hidden = !BF_ON; $("bf-foot").hidden = !BF_ON;
+  var plansEl = $("plans"), plano = $("plano"), curCat = "chip";
+
+  var GROUPS = { chip: "Chip 5G", fibra: "Wi-Fi Fibra", fwa: "Wi-Fi sem cabo (FWA 5G)", combo: "Combos" };
+  Object.keys(GROUPS).forEach(function (c) {
+    var og = document.createElement("optgroup"); og.label = GROUPS[c];
+    PLANS.filter(function (p) { return p.cat === c; }).forEach(function (p) {
+      var o = document.createElement("option");
+      o.value = p.id; o.textContent = (p.sub && c !== "fibra" && c !== "fwa" ? p.name + " (" + p.sub + ")" : p.name) + " por R$ " + p.price + "/mês";
+      og.appendChild(o);
+    });
+    plano.appendChild(og);
+  });
+
+  function cardFor(p) {
+    var card = document.createElement("div");
+    card.className = "plan" + (p.best ? " best" : "");
+    card.innerHTML = (p.best ? '<span class="badge">' + (p.badge || "Melhor oferta") + '</span>' : "") +
+      '<div class="gb' + (p.small ? " sm" : "") + '">' + p.name + '</div>' +
+      (p.sub && p.cat !== "chip" ? '<div class="sub">' + p.sub + '</div>' : "") +
+      (p.de && p.cat !== "chip" && p.de !== p.price ? '<div class="de">de R$ ' + p.de + '</div>' : "") +
+      '<div class="price">R$ ' + p.price + '<small>/mês</small></div>' +
+      (p.per ? '<div class="after">Por ' + p.per + ', depois R$ ' + p.then + '/mês</div>' : "") +
+      (p.note ? '<div class="note">' + p.note + '</div>' : "") +
+      (p.items ? '<ul class="inc">' + p.items.map(function (t) { return "<li>" + t + "</li>"; }).join("") + '</ul>' : "") +
+      '<button type="button" class="btn small" data-plan="' + p.id + '">Quero este</button>';
+    return card;
+  }
+  function renderPlans() {
+    plansEl.innerHTML = "";
+    var list = PLANS.filter(function (p) { return p.cat === curCat; }), seen = [];
+    list.forEach(function (p) { var g = p.group || ""; if (seen.indexOf(g) < 0) seen.push(g); });
+    seen.forEach(function (g) {
+      if (g) { var t = document.createElement("h3"); t.className = "grp"; t.textContent = g; plansEl.appendChild(t); }
+      var grid = document.createElement("div"); grid.className = "plans";
+      list.filter(function (p) { return (p.group || "") === g; }).forEach(function (p) { grid.appendChild(cardFor(p)); });
+      plansEl.appendChild(grid);
+    });
+    $("cat-lead").textContent = CATS[curCat].lead;
+    $("included").innerHTML = CATS[curCat].inc.map(function (t) { return "<span>" + t + "</span>"; }).join("");
+    document.querySelectorAll("[data-cat]").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-cat") === curCat ? "true" : "false"); });
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-cat]");
+    if (b) { curCat = b.getAttribute("data-cat"); renderPlans(); applyCtx(); }
+  });
+  plansEl.addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-plan]");
+    if (!b) return;
+    plano.value = b.getAttribute("data-plan");
+    update();
+    go(2);
+  });
+  function planInfo() { return PLANS.filter(function (p) { return p.id === plano.value; })[0]; }
+  function svc() { var p = planInfo(); return p ? p.cat : curCat; }
+  function hasChip() { return svc() === "chip"; }
+  function hasLine() { var p = planInfo(); return p ? (p.cat === "chip" || (p.cat === "combo" && /chip/i.test(p.sub || ""))) : curCat === "chip"; }
+  function applyCtx() {
+    var chip = hasChip(), s = svc();
+    document.querySelectorAll("[data-chiponly]").forEach(function (el) { el.hidden = !chip; });
+    document.querySelectorAll("[data-nochip]").forEach(function (el) { el.hidden = chip; });
+    $("instal").hidden = chip;
+    var L = [];
+    if (s === "fibra") L = ["Instalação e Wi-Fi inclusos no plano.", "A disponibilidade depende do seu endereço. Eu confiro com você antes de finalizar."];
+    if (s === "fwa") L = ["Internet sem cabo: o roteador vem incluso, em comodato.", "A disponibilidade depende do seu endereço. Eu confiro com você antes de finalizar."];
+    if (s === "combo") L = ["Instalação e Wi-Fi inclusos no combo.", "Se o combo tem chip, ele é feito pelo técnico na instalação. Eu não peço dados de portabilidade neste caso.", "A disponibilidade depende do seu endereço. Eu confiro com você antes de finalizar."];
+    $("instal-lista").innerHTML = L.map(function (t) { return "<li>" + t + "</li>"; }).join("");
+    $("tipo-wrap").hidden = !chip; $("port-fs").hidden = !chip;
+    $("inst-campos").hidden = chip;
+    $("cobertura-hint").hidden = chip;
+    $("inst-nota").textContent = s === "fwa" ? "O roteador é instalado no seu endereço." : "A instalação é feita no endereço informado.";
+  }
+  function go(n) {
+    [1, 2, 3].forEach(function (i) {
+      $("p" + i).hidden = i !== n;
+      $("tab" + i).setAttribute("aria-selected", i === n ? "true" : "false");
+    });
+    window.scrollTo({ top: 0, behavior: "instant" });
+    applyCtx();
+  }
+  function setPort(v) {
+    var r = $(v === "sim" ? "p-sim" : "p-nao");
+    if (!r.checked) { r.checked = true; update(); }
+    syncPort();
+  }
+  function syncPort() {
+    var v = document.querySelector('input[name="port"]:checked');
+    v = v ? v.value : "";
+    $("portabilidade").hidden = v !== "sim";
+    document.querySelectorAll("[data-port]").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-port") === v ? "true" : "false");
+    });
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-port]");
+    if (b) setPort(b.getAttribute("data-port"));
+  });
+  document.querySelectorAll('input[name="port"]').forEach(function (r) { r.addEventListener("change", syncPort); });
+  document.addEventListener("click", function (e) {
+    var g = e.target.closest("[data-go]");
+    if (g) go(parseInt(g.getAttribute("data-go"), 10));
+  });
+
+  function digits(s) { return (s || "").replace(/\D/g, ""); }
+  function maskCpf(s) { var d = digits(s).slice(0, 11); return d.replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{1,2})$/, "$1-$2"); }
+  function maskCep(s) { var d = digits(s).slice(0, 8); return d.length > 5 ? d.slice(0, 5) + "-" + d.slice(5) : d; }
+  function maskPhone(s) {
+    var d = digits(s).slice(0, 11);
+    if (d.length <= 2) return d.length ? "(" + d : "";
+    if (d.length <= 6) return "(" + d.slice(0, 2) + ") " + d.slice(2);
+    if (d.length <= 10) return "(" + d.slice(0, 2) + ") " + d.slice(2, 6) + "-" + d.slice(6);
+    return "(" + d.slice(0, 2) + ") " + d.slice(2, 3) + " " + d.slice(3, 7) + "-" + d.slice(7);
+  }
+  function maskDate(s) { var d = digits(s).slice(0, 8); if (d.length > 4) return d.slice(0, 2) + "/" + d.slice(2, 4) + "/" + d.slice(4); if (d.length > 2) return d.slice(0, 2) + "/" + d.slice(2); return d; }
+  var MASKS = { nasc: maskDate, cpf: maskCpf, cep: maskCep, tel1: maskPhone, tel2: maskPhone, numero: maskPhone };
+  function cpfOk(s) {
+    var d = digits(s); if (d.length !== 11 || /^(\d)\1+$/.test(d)) return false;
+    for (var t = 9; t < 11; t++) {
+      var sum = 0; for (var i = 0; i < t; i++) sum += parseInt(d[i], 10) * (t + 1 - i);
+      var dv = (sum * 10) % 11 % 10; if (dv !== parseInt(d[t], 10)) return false;
+    }
+    return true;
+  }
+  function phoneOk(s) { var d = digits(s); return (d.length === 10 || d.length === 11) && parseInt(d.slice(0, 2), 10) >= 11; }
+  function dateOk(s) { var m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(s || ""); if (!m) return false; var d = +m[1], mo = +m[2], y = +m[3]; var t = new Date(y, mo - 1, d); return t.getFullYear() === y && t.getMonth() === mo - 1 && t.getDate() === d && t < new Date() && y >= 1900; }
+  function fmtDate(s) { return dateOk(s) ? s : ""; }
+  function val(id) { return ($(id).value || "").trim(); }
+  function radio(name) { var r = document.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ""; }
+  function cityText() { return val("cidade") === "outra" ? val("outra") : val("cidade"); }
+
+  function syncTipo() {
+    var t = radio("tipo");
+    document.querySelectorAll("[data-tipo]").forEach(function (b) {
+      var on = b.getAttribute("data-tipo") === t;
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.textContent = on ? "✓ " + (t === "Físico" ? "Chip físico escolhido" : "Chip virtual escolhido")
+        : (b.getAttribute("data-tipo") === "Físico" ? "Quero o chip físico" : "Quero o chip virtual");
+      b.disabled = b.getAttribute("data-tipo") === "Físico" && $("t-fisico").disabled;
+    });
+    document.querySelectorAll("[data-card]").forEach(function (c) { c.classList.toggle("on", c.getAttribute("data-card") === t); });
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-tipo]");
+    if (!b || b.disabled) return;
+    $(b.getAttribute("data-tipo") === "Físico" ? "t-fisico" : "t-virtual").checked = true;
+    update();
+  });
+  function update() {
+    applyCtx();
+    var chip = hasChip();
+    var outra = val("cidade") === "outra";
+    $("outra-wrap").hidden = !outra;
+    var fis = $("t-fisico"), vir = $("t-virtual");
+    fis.disabled = outra;
+    var hint = $("tipo-hint");
+    if (chip && outra) {
+      if (fis.checked) { fis.checked = false; }
+      vir.checked = true;
+      hint.hidden = false; hint.textContent = "Nessa cidade eu atendo só com chip virtual (eSIM).";
+    } else { hint.hidden = true; }
+    var tipo = chip ? radio("tipo") : "";
+    $("fisico-campos").hidden = tipo !== "Físico";
+    $("virtual-campos").hidden = tipo !== "Virtual (eSIM)";
+    $("entrega-nota").textContent = val("cidade") === "São Bento (PB)"
+      ? "Em São Bento a entrega pode ser no mesmo dia."
+      : "Nas demais cidades eu combino a entrega com você pelo WhatsApp.";
+    $("aparelho-aviso").hidden = val("aparelho") !== "Não sei se o meu serve";
+    var port = chip && radio("port") === "sim";
+    $("port-campos").hidden = !port;
+    $("port-campos").style.display = port ? "flex" : "none";
+    var pi = planInfo(); $("bf-aviso").hidden = !(chip && pi && pi.id === "chip-bf-120GB");
+    $("modelo-campos").hidden = !hasLine();
+    syncTipo();
+    var msg = build();
+    $("previa").value = msg;
+    $("enviar").href = "https://wa.me/5583999727048?text=" + encodeURIComponent(msg);
+  }
+
+  function build() {
+    var p = planInfo(), chip = hasChip(), tipo = chip ? radio("tipo") : "", L = [];
+    L.push("Olá, Ivam! Quero fazer meu pré-cadastro na Brisanet.");
+    L.push("");
+    L.push("Serviço: " + CATS[svc()].nome);
+    L.push("Plano: " + (p ? p.msg + " - R$ " + p.price + "/mês" + (p.per ? " por " + p.per : "") : "—"));
+    if (chip) L.push("Chip: " + (tipo || "—"));
+    L.push("Cidade: " + (cityText() || "—"));
+    L.push("");
+    L.push("Nome: " + (val("nome") || "—"));
+    L.push("CPF: " + (val("cpf") || "—"));
+    L.push("RG: " + (val("rg") || "—"));
+    L.push("Nascimento: " + (fmtDate(val("nasc")) || "—"));
+    L.push("E-mail: " + (val("email") || "—"));
+    L.push("Telefone (WhatsApp): " + (val("tel1") || "—"));
+    if (val("tel2")) L.push("Outro telefone: " + val("tel2"));
+    L.push("");
+    L.push("CEP: " + (val("cep") || "—"));
+    L.push("Endereço: " + (val("rua") || "—") + ", nº " + (val("num") || "—"));
+    L.push("Bairro: " + (val("bairro") || "—"));
+    if (val("ref")) L.push("Referência: " + val("ref"));
+    if (!chip) L.push("Melhor horário para a instalação: " + val("horario-inst"));
+    if (tipo === "Físico") L.push("Melhor horário para receber: " + val("horario"));
+    if (hasLine()) {
+      L.push("");
+      L.push("Aparelho: " + (val("modelo") || "—") + (tipo === "Virtual (eSIM)" && val("aparelho") ? " (" + val("aparelho") + ")" : ""));
+    }
+    L.push("Vencimento da fatura: dia " + (radio("venc") || "—"));
+    L.push("");
+    if (!chip) {
+    } else if (radio("port") === "sim") {
+      L.push("Portabilidade: sim");
+      L.push("Número que quero trazer: " + (val("numero") || "—"));
+      L.push("Operadora atual: " + (val("operadora") || "—"));
+      L.push("Chip no meu CPF: " + ($("c-cpf").checked ? "sim" : "não confirmado"));
+      L.push("Sem fidelidade ativa: " + ($("c-fid").checked ? "sim" : "não confirmado"));
+    } else if (radio("port") === "nao") {
+      L.push("Portabilidade: não, quero número novo");
+    }
+    return L.join("\n");
+  }
+
+  function problems() {
+    var e = [], chip = hasChip(), tipo = chip ? radio("tipo") : "";
+    if (!plano.value) e.push("Escolha um plano.");
+    if (!val("cidade")) e.push("Escolha sua cidade.");
+    else if (val("cidade") === "outra" && !val("outra")) e.push("Diga qual é a sua cidade.");
+    if (chip && !tipo) e.push("Escolha o tipo de chip.");
+    if (val("nome").split(/\s+/).filter(Boolean).length < 2) e.push("Preencha seu nome completo.");
+    if (!cpfOk(val("cpf"))) e.push("O CPF parece estar errado. Confira os números.");
+    if (digits(val("rg")).length < 5 && val("rg").length < 5) e.push("Preencha o RG.");
+    if (!val("nasc") || !dateOk(val("nasc"))) e.push("Informe a data de nascimento no formato dia/mês/ano, por exemplo 25/03/1990.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val("email"))) e.push("O e-mail parece estar errado. Confira.");
+    if (!phoneOk(val("tel1"))) e.push("Informe o telefone com DDD.");
+    if (val("tel2") && !phoneOk(val("tel2"))) e.push("O outro telefone parece estar errado. Confira o DDD e os números.");
+    if (digits(val("cep")).length !== 8) e.push("O CEP precisa ter 8 números.");
+    if (!val("rua") || !val("num") || !val("bairro")) e.push("Preencha a rua, o número e o bairro.");
+    if (hasLine() && !val("modelo")) e.push("Informe a marca e o modelo do seu celular.");
+    if (tipo === "Virtual (eSIM)" && !val("aparelho")) e.push("Diga se o seu aparelho aceita eSIM.");
+    if (!radio("venc")) e.push("Escolha o dia de vencimento da fatura.");
+    if (chip && !radio("port")) e.push("Diga se quer manter o número ou ter um número novo.");
+    if (chip && radio("port") === "sim" && (!phoneOk(val("numero")) || !val("operadora"))) e.push("Informe o número que quer trazer (com DDD) e a operadora atual.");
+    if (!$("aceite").checked) e.push("Marque a caixa de aceite para continuar.");
+    return e;
+  }
+
+  $("form").addEventListener("input", function (ev) {
+    var f = MASKS[ev.target.id];
+    if (f) ev.target.value = f(ev.target.value);
+  });
+  $("form").addEventListener("input", update);
+  $("form").addEventListener("change", update);
+  $("form").addEventListener("submit", function (e) { e.preventDefault(); });
+  $("enviar").addEventListener("click", function (ev) {
+    var e = problems();
+    $("erro").textContent = e.length ? e[0] : "";
+    if (e.length) ev.preventDefault();
+  });
+  $("copiar").addEventListener("click", function () {
+    var t = $("previa");
+    function fallback() { t.removeAttribute("readonly"); t.select(); t.setSelectionRange(0, 99999); t.setAttribute("readonly", ""); $("erro").textContent = "Selecionei o texto. Toque e segure para copiar."; }
+    try {
+      navigator.clipboard.writeText(t.value).then(function () { $("erro").textContent = "Mensagem copiada."; }, fallback);
+    } catch (x) { fallback(); }
+  });
+  var CHECKS = {
+    nome: { ok: function (v) { return v.split(/\s+/).filter(Boolean).length >= 2; }, msg: "Escreva o nome e o sobrenome." },
+    cpf: { ok: cpfOk, msg: "Esse CPF não parece válido. Confira os números.", done: function (v) { return digits(v).length === 11; } },
+    rg: { ok: function (v) { return digits(v).length >= 5 || v.length >= 5; }, msg: "Preencha o RG." },
+    nasc: { ok: dateOk, msg: "Data inválida. Use dia/mês/ano, por exemplo 25/03/1990.", done: function (v) { return v.length === 10; } },
+    email: { ok: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }, msg: "Esse e-mail não parece certo. Confira." },
+    tel1: { ok: phoneOk, msg: "Telefone inválido. Informe com DDD.", done: function (v) { return digits(v).length === 11; } },
+    tel2: { ok: phoneOk, msg: "Telefone inválido. Informe com DDD.", optional: true, done: function (v) { return digits(v).length === 11; } },
+    cep: { ok: function (v) { return digits(v).length === 8; }, msg: "O CEP precisa ter 8 números.", done: function (v) { return digits(v).length === 8; } },
+    numero: { ok: phoneOk, msg: "Telefone inválido. Informe com DDD.", done: function (v) { return digits(v).length === 11; } }
+  };
+  var touched = {};
+  Object.keys(CHECKS).forEach(function (id) {
+    var inp = $(id), lab = inp.closest("label"), s = document.createElement("span");
+    s.className = "ferr"; s.id = "fe-" + id; s.setAttribute("role", "alert");
+    lab.appendChild(s); inp.setAttribute("aria-describedby", "fe-" + id);
+  });
+  function checkField(id) {
+    var c = CHECKS[id], inp = $(id), v = val(id), bad = false, msg = "";
+    if (!v) { bad = !c.optional && !!touched[id]; msg = "Preencha este campo."; }
+    else if (!c.ok(v)) { bad = true; msg = c.msg; }
+    inp.setAttribute("aria-invalid", bad ? "true" : "false");
+    $("fe-" + id).textContent = bad ? msg : "";
+  }
+  $("form").addEventListener("input", function (ev) {
+    var id = ev.target.id, c = CHECKS[id];
+    if (!c) return;
+    if (touched[id] || (c.done && c.done(val(id)))) { touched[id] = true; checkField(id); }
+  });
+  $("form").addEventListener("focusout", function (ev) {
+    var id = ev.target.id;
+    if (CHECKS[id]) { touched[id] = true; checkField(id); }
+  });
+  renderPlans();
+  update();
+})();
+</script>
+
+</body></html>
