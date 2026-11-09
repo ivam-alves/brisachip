@@ -7,7 +7,26 @@
     "phone_display": "83 9 9972-7048",
     "same_day_city": "São Bento (PB)",
     "same_day_name": "São Bento",
-    "cities": ["São Bento (PB)","Paulista (PB)","Brejo do Cruz (PB)","Belém do Brejo do Cruz (PB)","São José do Brejo do Cruz (PB)","Jardim de Piranhas (RN)","Serra Negra do Norte (RN)"],
+    "cities": [
+      "São Bento (PB)",
+      "Paulista (PB)",
+      "Brejo do Cruz (PB)",
+      "Belém do Brejo do Cruz (PB)",
+      "São José do Brejo do Cruz (PB)",
+      "Jardim de Piranhas (RN)",
+      "Serra Negra do Norte (RN)"
+    ],
     "default": true
+  },
+  {
+    "slug": "isac",
+    "name": "Isac Oliveira",
+    "first": "Isac",
+    "role": "promotor de venda",
+    "phone": "5583921585889",
+    "phone_display": "83 9 2158-5889",
+    "cities": [
+      "São Bento (PB)"
+    ]
   }
 ]

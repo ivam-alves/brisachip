@@ -21,10 +21,22 @@ def render(s):
     opts = "".join("<option>%s</option>" % esc(c) for c in s["cities"])
     h = re.sub(r'(<optgroup label="Minhas cidades de atendimento">\s*).*?(\s*</optgroup>)',
                lambda m: m.group(1) + opts + m.group(2), h, count=1, flags=re.S)
-    sd, sdn = s["same_day_city"], s["same_day_name"]
-    h = h.replace("<li><strong>São Bento:</strong>", "<li><strong>%s:</strong>" % esc(sdn))
-    h = h.replace('val("cidade") === "São Bento (PB)"', 'val("cidade") === %s' % json.dumps(sd, ensure_ascii=False))
-    h = h.replace("Em São Bento a entrega", "Em %s a entrega" % sdn)
+    if s.get("same_day_city"):
+        sd, sdn = s["same_day_city"], s["same_day_name"]
+        h = h.replace("<li><strong>São Bento:</strong>", "<li><strong>%s:</strong>" % esc(sdn))
+        h = h.replace('val("cidade") === "São Bento (PB)"', 'val("cidade") === %s' % json.dumps(sd, ensure_ascii=False))
+        h = h.replace("Em São Bento a entrega", "Em %s a entrega" % sdn)
+    else:
+        # sem entrega no mesmo dia: entrega sempre combinada pelo WhatsApp
+        h = re.sub(r'\s*<li><strong>São Bento:</strong>.*?</li>', '', h, count=1)
+        h = h.replace("<li><strong>Demais cidades:</strong> entrega combinada pelo WhatsApp.</li>",
+                      "<li>Entrega combinada pelo WhatsApp.</li>")
+        h = re.sub(r'\$\("entrega-nota"\)\.textContent = val\("cidade"\).*?pelo WhatsApp\.";',
+                   '$("entrega-nota").textContent = "Eu combino a entrega com você pelo WhatsApp.";', h, count=1, flags=re.S)
+    role = s.get("role", "vendedor")
+    h = h.replace("Ivam Alves · vendedor", "Ivam Alves · " + role)
+    h = h.replace("do vendedor Ivam Alves", "do %s Ivam Alves" % role)
+    h = h.replace("Ivam Alves, vendedor Brisanet", "Ivam Alves, %s Brisanet" % role)
     # identidade
     h = h.replace("5583999727048", s["phone"])
     h = h.replace("83 9 9972-7048", s["phone_display"])
